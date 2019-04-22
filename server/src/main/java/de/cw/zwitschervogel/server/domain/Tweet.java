@@ -1,5 +1,6 @@
 package de.cw.zwitschervogel.server.domain;
 
+import java.util.GregorianCalendar;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,9 +24,11 @@ public class Tweet {
   @OneToOne(cascade = {CascadeType.ALL})
   private Author author;
 
-
   private String content;
 
   private Integer likes;
+
+  @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+  private GregorianCalendar created;
 
 }
