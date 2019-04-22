@@ -1,0 +1,15 @@
+app:
+  name: zwitschervogel-server
+  version: 0.0.0.1
+logging:
+  level:
+    org:
+      springframework.web: INFO
+      hibernate: DEBUG
+      hibernate.engine.jdbc.env.internal.LobCreatorBuilderImpl: ERROR
+zwitschervogel:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/zwitschervogel
+    username: zwitschervogel
+    password: zwitschervogel
+    driver-class-name: org.postgresql.Driver
