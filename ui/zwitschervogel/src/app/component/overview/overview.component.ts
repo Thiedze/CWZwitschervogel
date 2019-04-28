@@ -15,7 +15,9 @@ export class OverviewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.tweetService.get().subscribe(tweets => this.tweets = tweets);
+    this.tweetService.get().subscribe(tweets => {
+      this.tweets = tweets;
+    });
   }
 
 }

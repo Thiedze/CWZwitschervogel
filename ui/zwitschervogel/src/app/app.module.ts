@@ -7,6 +7,16 @@ import {DatePipe, HashLocationStrategy, LocationStrategy} from '@angular/common'
 import {OverviewComponent} from './component/overview/overview.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {ApiInterceptor} from './interceptor/api.interceptor';
+import {MatButtonModule, MatCardModule, MatGridListModule, MatIconModule} from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+const MODULES = [
+  BrowserAnimationsModule,
+  MatGridListModule,
+  MatCardModule,
+  MatIconModule,
+  MatButtonModule
+];
 
 @NgModule({
   declarations: [
@@ -15,7 +25,8 @@ import {ApiInterceptor} from './interceptor/api.interceptor';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    MODULES
   ],
   providers: [
     TweetService,

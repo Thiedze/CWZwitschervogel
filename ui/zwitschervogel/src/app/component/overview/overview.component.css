@@ -1,0 +1,8 @@
+.tweet-card {
+  max-width: 60%;
+  margin: auto;
+}
+
+.tweet-content {
+  font-size: 120%;
+}
