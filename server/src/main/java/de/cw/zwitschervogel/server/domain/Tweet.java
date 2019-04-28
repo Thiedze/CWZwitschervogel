@@ -26,6 +26,7 @@ public class Tweet {
 
   private String content;
 
+  @Column(columnDefinition = "INTEGER DEFAULT 0")
   private Integer likes;
 
   @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")

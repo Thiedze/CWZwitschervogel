@@ -14,7 +14,7 @@ public class TweetService {
   private TweetRepository tweetRepository;
 
   public List<Tweet> tweets() {
-    return tweetRepository.findAll();
+    return tweetRepository.findAllByOrderByCreatedDesc();
   }
 
 }
