@@ -6,3 +6,11 @@
 .tweet-content {
   font-size: 120%;
 }
+
+.new-tweet-content {
+  width: 100%;
+}
+
+.new-tweet-button {
+  width: 10%;
+}

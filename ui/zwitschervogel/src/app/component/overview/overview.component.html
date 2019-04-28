@@ -1,3 +1,18 @@
+<mat-card class="tweet-card">
+  <mat-grid-list cols="4" rowHeight="8:1">
+    <mat-grid-tile [colspan]="3">
+      <mat-form-field class="new-tweet-content">
+        <input (keyup.enter)="createTweet()" [(ngModel)]="content" matInput maxlength="280"
+               placeholder="Was gibt es neues?"/>
+      </mat-form-field>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <button (click)="createTweet()" color="primary" mat-raised-button>
+        Zwitschern
+      </button>
+    </mat-grid-tile>
+  </mat-grid-list>
+</mat-card>
 <div *ngFor="let tweet of tweets">
   <mat-card class="tweet-card">
     <mat-card-header>
@@ -9,7 +24,7 @@
       {{tweet.content}}
     </mat-card-content>
     <mat-card-actions>
-      <button mat-button>
+      <button (click)="addLike(tweet.id)" mat-button>
         <mat-icon>favorite_border</mat-icon>
         {{tweet.likes}}
       </button>
