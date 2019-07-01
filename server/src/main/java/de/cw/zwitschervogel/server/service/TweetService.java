@@ -8,12 +8,12 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TweetService {
-
 
   @Autowired
   private TweetRepository tweetRepository;
@@ -21,13 +21,16 @@ public class TweetService {
   @Autowired
   private AuthorRepository authorRepository;
 
+  @Value("#{'${profanity.filter}'.split(',')}")
+  private List<String> profanityList;
+
   public List<Tweet> getTweets() {
     return tweetRepository.findAllByOrderByCreatedDesc();
   }
 
   public void addLike(Long tweetId) {
     Optional<Tweet> tweetOptional = tweetRepository.findById(tweetId);
-    if(tweetOptional.isPresent()) {
+    if (tweetOptional.isPresent()) {
       tweetOptional.get().setLikes(tweetOptional.get().getLikes() + 1);
       tweetRepository.save(tweetOptional.get());
     }
@@ -39,6 +42,15 @@ public class TweetService {
     tweet.setAuthor(author);
     tweet.setLikes(0);
     tweet.setCreated(new GregorianCalendar());
+
+    if (tweet.getContent() != null && profanityList.stream()
+        .anyMatch(tweet.getContent().toLowerCase()::contains)) {
+      for (String word : profanityList) {
+        tweet.setContent(tweet.getContent()
+            .replaceAll("(?i)" + word, new String(new char[word.length()]).replace("\0", "*")));
+      }
+    }
+
     tweetRepository.save(tweet);
   }
 

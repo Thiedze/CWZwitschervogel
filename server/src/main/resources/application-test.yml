@@ -13,3 +13,5 @@ zwitschervogel:
     username: zwitschervogel
     password: zwitschervogel
     driver-class-name: org.postgresql.Driver
+profanity:
+  filter: scheiße,scheisse,penis
