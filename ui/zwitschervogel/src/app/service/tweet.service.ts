@@ -14,12 +14,4 @@ export class TweetService {
   get(): Observable<Tweet[]> {
     return this.httpClient.get<Tweet[]>('tweets');
   }
-
-  createTweet(content: string): Observable<void> {
-    return this.httpClient.post<void>('tweets', {content: content});
-  }
-
-  addLike(tweetId: number): Observable<void> {
-    return this.httpClient.post<void>('tweets/' + tweetId + '/likes', null);
-  }
 }
