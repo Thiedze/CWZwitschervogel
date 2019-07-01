@@ -1,7 +1,6 @@
 package de.cw.zwitschervogel.server.controller;
 
-import de.cw.zwitschervogel.server.dto.TweetDto;
-import de.cw.zwitschervogel.server.mapper.TweetMapper;
+import de.cw.zwitschervogel.server.domain.Tweet;
 import de.cw.zwitschervogel.server.service.TweetService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +18,8 @@ public class TweetController {
   private TweetService tweetService;
 
   @RequestMapping(value = "/tweets", method = RequestMethod.GET)
-  public List<TweetDto> getTweets() {
-    return TweetMapper.INSTANCE.tweetsToTweetDtos(tweetService.getTweets());
+  public List<Tweet> getTweets() {
+    return tweetService.getTweets();
   }
 
   @RequestMapping(value = "/tweets/{tweetId}/likes", method = RequestMethod.POST)
@@ -29,8 +28,8 @@ public class TweetController {
   }
 
   @RequestMapping(value = "/tweets", method = RequestMethod.POST)
-  public void saveTweet(@RequestBody TweetDto tweetDto) {
-    tweetService.saveTweet(TweetMapper.INSTANCE.tweetDtoToTweet(tweetDto));
+  public void saveTweet(@RequestBody Tweet tweet) {
+    tweetService.saveTweet(tweet);
   }
 
 }
