@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class TweetService {
@@ -32,6 +33,7 @@ public class TweetService {
     }
   }
 
+  @Transactional
   public void saveTweet(Tweet tweet) {
     Author author = authorRepository.findById(1L).get();
     tweet.setAuthor(author);

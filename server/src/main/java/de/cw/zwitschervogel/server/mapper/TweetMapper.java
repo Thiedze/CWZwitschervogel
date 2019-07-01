@@ -15,4 +15,5 @@ public interface TweetMapper {
 
   List<TweetDto> tweetsToTweetDtos(List<Tweet> tweets);
 
+  Tweet tweetDtoToTweet(TweetDto tweetDto);
 }
