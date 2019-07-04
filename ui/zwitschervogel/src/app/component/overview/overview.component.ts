@@ -20,22 +20,6 @@ export class OverviewComponent implements OnInit {
     this.loadTweets();
   }
 
-  public addLike(tweetId: number): void {
-    this.tweetService.addLike(tweetId).subscribe(result => {
-      this.loadTweets();
-    });
-
-  }
-
-  public createTweet(): void {
-    if (this.content !== undefined && this.content != null && this.content.length > 3) {
-      this.tweetService.createTweet(this.content).subscribe(result => {
-        this.content = '';
-        this.loadTweets();
-      });
-    }
-  }
-
   private loadTweets(): void {
     this.tweetService.get().subscribe(tweets => {
       this.tweets = tweets;
