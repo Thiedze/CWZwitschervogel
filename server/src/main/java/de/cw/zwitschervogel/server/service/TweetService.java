@@ -30,20 +30,23 @@ public class TweetService {
 
   @Transactional
   public void saveTweet(Tweet tweet) {
-    Author author = authorRepository.findById(1L).get();
-    tweet.setAuthor(author);
-    tweet.setLikes(0);
-    tweet.setCreated(new GregorianCalendar());
+    Optional<Author> optional = authorRepository.findById(1L);
 
-    if (tweet.getContent() != null && profanityList.stream()
-        .anyMatch(tweet.getContent().toLowerCase()::contains)) {
-      for (String word : profanityList) {
-        tweet.setContent(tweet.getContent()
-            .replaceAll("(?i)" + word, new String(new char[word.length()]).replace("\0", "*")));
+    if (optional.isPresent()) {
+      tweet.setAuthor(optional.get());
+      tweet.setLikes(0);
+      tweet.setCreated(new GregorianCalendar());
+
+      if (tweet.getContent() != null && profanityList.stream()
+          .anyMatch(tweet.getContent().toLowerCase()::contains)) {
+        for (String word : profanityList) {
+          tweet.setContent(tweet.getContent()
+              .replaceAll("(?i)" + word, new String(new char[word.length()]).replace("\0", "*")));
+        }
       }
-    }
 
-    tweetRepository.save(tweet);
+      tweetRepository.save(tweet);
+    }
   }
 
   @Transactional
