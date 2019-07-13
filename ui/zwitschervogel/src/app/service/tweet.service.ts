@@ -19,7 +19,4 @@ export class TweetService {
     return this.httpClient.post<void>('tweets', {content: content});
   }
 
-  addLike(tweetId: number): Observable<void> {
-    return this.httpClient.post<void>('tweets/' + tweetId + '/likes', null);
-  }
 }

@@ -34,13 +34,4 @@ public class TweetService {
     tweetRepository.save(tweet);
   }
 
-  @Transactional
-  public void addLike(Long tweetId) {
-    Optional<Tweet> tweetOptional = tweetRepository.findById(tweetId);
-    if (tweetOptional.isPresent()) {
-      tweetOptional.get().setLikes(tweetOptional.get().getLikes() + 1);
-      tweetRepository.save(tweetOptional.get());
-    }
-  }
-
 }

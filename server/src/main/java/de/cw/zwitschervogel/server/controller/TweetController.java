@@ -27,9 +27,4 @@ public class TweetController {
     tweetService.saveTweet(tweet);
   }
 
-  @RequestMapping(value = "/tweets/{tweetId}/likes", method = RequestMethod.POST)
-  public void likes(@PathVariable Long tweetId) {
-    tweetService.addLike(tweetId);
-  }
-
 }
