@@ -25,14 +25,6 @@ public class TweetService {
     return tweetRepository.findAllByOrderByCreatedDesc();
   }
 
-  public void addLike(Long tweetId) {
-    Optional<Tweet> tweetOptional = tweetRepository.findById(tweetId);
-    if(tweetOptional.isPresent()) {
-      tweetOptional.get().setLikes(tweetOptional.get().getLikes() + 1);
-      tweetRepository.save(tweetOptional.get());
-    }
-  }
-
   @Transactional
   public void saveTweet(Tweet tweet) {
     Author author = authorRepository.findById(1L).get();
@@ -40,6 +32,15 @@ public class TweetService {
     tweet.setLikes(0);
     tweet.setCreated(new GregorianCalendar());
     tweetRepository.save(tweet);
+  }
+
+  @Transactional
+  public void addLike(Long tweetId) {
+    Optional<Tweet> tweetOptional = tweetRepository.findById(tweetId);
+    if (tweetOptional.isPresent()) {
+      tweetOptional.get().setLikes(tweetOptional.get().getLikes() + 1);
+      tweetRepository.save(tweetOptional.get());
+    }
   }
 
 }

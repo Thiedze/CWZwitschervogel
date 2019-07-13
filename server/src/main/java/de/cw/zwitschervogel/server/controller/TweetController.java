@@ -22,14 +22,14 @@ public class TweetController {
     return tweetService.getTweets();
   }
 
-  @RequestMapping(value = "/tweets/{tweetId}/likes", method = RequestMethod.POST)
-  public void likes(@PathVariable Long tweetId) {
-    tweetService.addLike(tweetId);
-  }
-
   @RequestMapping(value = "/tweets", method = RequestMethod.POST)
   public void saveTweet(@RequestBody Tweet tweet) {
     tweetService.saveTweet(tweet);
+  }
+
+  @RequestMapping(value = "/tweets/{tweetId}/likes", method = RequestMethod.POST)
+  public void likes(@PathVariable Long tweetId) {
+    tweetService.addLike(tweetId);
   }
 
 }
